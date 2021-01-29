@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cart.css">
+    <script src="https://kit.fontawesome.com/eb332d9fcd.js" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body class="body-background">
+    <div class="product-container">
+        <div class="space-product">
+            <div class="iphone row">
+               <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                <img src="images/product-1.png" alt="" srcset="">
+               </div>
+               <div class="col-lg-3 col-md-6 text-center">
+                   <h3>Iphone 11</h3>
+                   <h3>128 GB Black</h3>
+               </div>
+<!-- way-1 and 3-start -->
+               <!-- <div>
+                <button id="phone-decrease" type="button" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <input id="phone-count" type="text" class="form-control text-center" value="1">
+                <button id="phone-increase" type="button" class="btn btn-default"><i class="fas fa-plus"></i></button>
+               </div> -->
+<!-- way-1 and 3-end -->
+             <div class="col-lg-3 col-md-6 text-center">
+                <button onclick="handleGoodsCost('phone',false);" type="button" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <input id="phone-count" type="text" class="form-control text-center" value="0">
+                <button onclick="handleGoodsCost('phone',true);" type="button" class="btn btn-default"><i class="fas fa-plus"></i></button>
+               </div>
+            <div class="col-lg-2 col-md-6 text-center">
+                   <h2 id="phone-total">$0</h2>
+               </div>
+               <div class="col-lg-1 col-md-12 text-center">
+                <button type="button" class="btn btn-default"> <i class="fas fa-times"></i></button>
+               </div>
+            </div>
+            <div class="iphone row">
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                 <img src="images/product-2.png" alt="" srcset="">
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <h3>Iphone 11</h3>
+                    <h3>Silicon Case-Back</h3>
+                </div>
+<!-- way-1 and 3-start -->
+                <!-- <div>
+                    <button id="case-decrease" type="button" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                    <input id="case-count" type="text" class="form-control text-center" value="1">
+                    <button id="case-increase" type="button" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                </div> -->
+<!-- way-1 and 3-end -->
+<!-- way-2-start -->
+                <!-- <div>
+                    <button onclick="handleCaseCost(false);" type="button" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                    <input id="case-count" type="text" class="form-control text-center" value="1">
+                    <button onclick="handleCaseCost(true)" type="button" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                </div> -->
+<!-- way-2-end -->
+
+                 <div class="col-lg-3 col-md-6 text-center">
+                            <button onclick="handleGoodsCost('case',false);" type="button" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="0">
+                           <button onclick="handleGoodsCost('case',true);" type="button" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="col-lg-2 col-md-6 text-center">
+                    <h2 id="case-total">$0</h2>
+                </div>
+                <div class="col-lg-1 col-md-12 text-center">
+                    <button type="button" class="btn btn-default"> <i class="fas fa-times"></i></button>
+                </div>
+             </div>
+             <div class="calculation">
+                 <div>
+                    <h2>Subtotal:</h2>
+                    <h2>Tax:</h2>
+                    <h2>Total:</h2>
+                 </div>
+                 <div>
+                    <h2 id="total-price">$0</h2>
+                    <h2 id="tax-amount">$0</h2>
+                    <h2 id="grand-total">$0</h2>
+                 </div>
+                
+             </div>
+             <div class="button">
+                <button type="button" class="btn btn-outline-success">Check-out</button>
+             </div>
+        </div>
+    </div>
+    <script>
+
+        function handleGoodsCost(product,isIncrease){
+            const productInput = document.getElementById(product + '-count');
+            const productCount = parseInt(productInput.value);
+            let productNewCount = productCount;
+            if(isIncrease == true){
+                productNewCount = productCount + 1;
+            }
+            else if(isIncrease == false && productCount > 0){
+                productNewCount = productCount - 1;
+            }
+            productInput.value = productNewCount;
+            const productCost = document.getElementById(product+'-total');
+            // const productTotal = productNewCount * 121;
+            productTotal = 0;
+            if(product == 'phone'){
+                productTotal = productNewCount * 1219;
+            }
+            else if(product == 'case'){
+                productTotal = productNewCount * 121;
+            }
+            productCost.innerText = '$'+productTotal;
+            calculateTotal();
+
+        }
+
+        function calculateTotal(){
+            const phoneCount = getInputValue('phone');
+            const caseCount = getInputValue('case');
+
+            const totalPrice = phoneCount * 1219 + caseCount * 121;
+            document.getElementById('total-price').innerText = '$'+totalPrice;
+            const totalTax = phoneCount * 2+ caseCount * 0.5;
+            document.getElementById('tax-amount').innerText = '$'+totalTax;
+            const total = totalPrice + totalTax;
+            document.getElementById('grand-total').innerText = '$'+total;
+        }
+
+
+        function getInputValue(product){
+            const productInput = document.getElementById(product + '-count');
+            productCount = parseInt(productInput.value);
+            return productCount;
+        }
+
+
+// way-3-start
+//         document.getElementById('phone-increase').addEventListener('click',function(){
+//             handlePhoneCost(true);
+//         })
+
+//         document.getElementById('phone-decrease').addEventListener('click',function(){ 
+//             handlePhoneCost(false);
+//         })
+
+//         function handlePhoneCost(isIncrease){
+//             const phoneInput = document.getElementById('phone-count');
+//             const phoneCount = parseInt(phoneInput.value);
+//             let phoneNewCount = phoneCount;
+//             if(isIncrease == true){
+//                 phoneNewCount = phoneCount + 1;
+//             }
+//             else if(isIncrease == false && phoneCount > 0){
+//                 phoneNewCount = phoneCount - 1;
+//             }
+//             phoneInput.value = phoneNewCount;
+//             const phoneCost = document.getElementById('phone-total');
+//             const phoneTotal = phoneNewCount * 1219;
+//             phoneCost.innerText = '$'+phoneTotal;
+//         }
+// // cover start
+//         document.getElementById('case-increase').addEventListener('click',function(){
+//             handleCaseCost(true);
+//         })
+
+//         document.getElementById('case-decrease').addEventListener('click',function(){ 
+//             handleCaseCost(false);
+//         })
+
+//         function handleCaseCost(isIncrease){
+//             const caseInput = document.getElementById('case-count');
+//             const caseCount = parseInt(caseInput.value);
+//             let caseNewCount = caseCount;
+//             if(isIncrease == true){
+//                 caseNewCount = caseCount + 1;
+//             }
+//             else if(isIncrease == false && caseCount > 0){
+//                 caseNewCount = caseCount - 1;
+//             }
+//             caseInput.value = caseNewCount;
+//             const caseCost = document.getElementById('case-total');
+//             const caseTotal = caseNewCount * 121;
+//             caseCost.innerText = '$'+caseTotal;
+//         }
+// way-3-end
+// way-2-start
+        // function handleCaseCost(isIncrease){
+        //     const caseInput = document.getElementById('case-count');
+        //     const caseCount = parseInt(caseInput.value);
+        //     let caseNewCount = caseCount;
+        //     if(isIncrease == true){
+        //         caseNewCount = caseCount + 1;
+        //     }
+        //     else if(isIncrease == false && caseCount > 0){
+        //         caseNewCount = caseCount - 1;
+        //     }
+        //     caseInput.value = caseNewCount;
+        //     const caseCost = document.getElementById('case-total');
+        //     const caseTotal = caseNewCount * 121;
+        //     caseCost.innerText = '$'+caseTotal;
+        // }
+// way-2-end
+// Way-1-start
+        // document.getElementById('case-increase').addEventListener('click',function(){
+        //     const caseInput = document.getElementById('case-count');
+        //     const caseCount = parseInt(caseInput.value);
+        //     const caseNewCount = caseCount + 1;
+        //     caseInput.value = caseNewCount;
+        //     const caseCost = document.getElementById('case-total');
+        //     const caseTotal = caseNewCount * 121;
+        //     caseCost.innerText = '$'+caseTotal;
+        // })
+
+        // document.getElementById('case-decrease').addEventListener('click',function(){
+        //     const caseInput = document.getElementById('case-count');
+        //     const caseCount = parseInt(caseInput.value);
+        //     const caseNewCount = caseCount - 1;
+        //     caseInput.value = caseNewCount;
+        //     const caseCost = document.getElementById('case-total');
+        //     const caseTotal = caseNewCount * 121;
+        //     caseCost.innerText = '$'+caseTotal;
+
+        // })
+
+// Way-1-end
+    </script>
+</body>
+</html>

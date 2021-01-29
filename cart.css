@@ -1,0 +1,42 @@
+.body-background {
+    background-color: #fff;
+}
+
+.product-container {
+    background-color: rgb(228, 198, 198);
+    border-radius: 10px;
+    margin: 50px;
+}
+
+.iphone{
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(251, 255, 255);
+    margin-bottom: 10px;
+}
+
+.iphone {
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.iphone img {
+    width: 200px;
+}
+
+.space-product {
+    padding: 60px;
+}
+
+.calculation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
